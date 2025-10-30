@@ -5,18 +5,56 @@ document.addEventListener('DOMContentLoaded', function() {
     const calendarBtn = document.getElementById('calendar-btn');
     const cartBtn = document.getElementById('cart-btn');
     const userBtn = document.getElementById('user-btn');
+    const userDropdown = document.getElementById('user-dropdown');
     
     // Event listeners para os botões da barra superior
     calendarBtn.addEventListener('click', function() {
-        alert('Calendário clicado! Aqui você pode adicionar funcionalidade de calendário.');
+        console.log('Calendário clicado');
     });
     
     cartBtn.addEventListener('click', function() {
-        alert('Carrinho clicado! Aqui você pode mostrar os itens do carrinho.');
+        console.log('Carrinho clicado');
     });
     
-    userBtn.addEventListener('click', function() {
-        alert('Usuário clicado! Aqui você pode adicionar login/perfil do usuário.');
+    // Menu dropdown do usuário
+    userBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        userDropdown.classList.toggle('active');
+    });
+    
+    // Fechar dropdown ao clicar fora
+    document.addEventListener('click', function(e) {
+        if (!userDropdown.contains(e.target) && !userBtn.contains(e.target)) {
+            userDropdown.classList.remove('active');
+        }
+    });
+    
+    // Ações do menu dropdown
+    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const action = this.getAttribute('data-action');
+            
+            switch(action) {
+                case 'packages':
+                    console.log('Navegando para Meus Pacotes...');
+                    break;
+                case 'calendar':
+                    console.log('Navegando para Meu Calendário...');
+                    break;
+                case 'settings':
+                    console.log('Abrindo Configurações da Conta...');
+                    break;
+                case 'switch':
+                    console.log('Trocar de Conta...');
+                    break;
+                case 'logout':
+                    console.log('Saindo da conta...');
+                    break;
+            }
+            
+            userDropdown.classList.remove('active');
+        });
     });
     
     // Funcionalidade para os cards de dias da semana
@@ -69,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const title = this.querySelector('h3').textContent;
             const price = this.querySelector('.price').textContent;
             
-            alert(`Você clicou em: ${title}\nPreço: ${price}\n\nAqui você pode adicionar ao carrinho ou ver mais detalhes.`);
+            console.log(`Oferta clicada: ${title} - ${price}`);
         });
     });
     

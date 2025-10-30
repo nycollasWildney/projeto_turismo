@@ -62,6 +62,85 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Menu dropdown do usuário */
+.user-menu-wrapper {
+    position: relative;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    min-width: 250px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    overflow: hidden;
+}
+
+.user-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid white;
+}
+
+.user-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 15px;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f4f8;
+    padding-left: 24px;
+}
+
+.dropdown-item.logout {
+    color: #e74c3c;
+}
+
+.dropdown-item.logout:hover {
+    background-color: #fee;
+}
+
+.dropdown-item svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.dropdown-item span {
+    font-weight: 500;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #e8e8e8;
+    margin: 8px 0;
+}
+
 /* Conteúdo principal */
 main {
     flex: 1;
@@ -128,6 +207,11 @@ main {
 .day-info {
     font-size: 12px;
     opacity: 0.8;
+    border: 2px solid currentColor;
+    border-radius: 12px;
+    padding: 4px 12px;
+    display: inline-block;
+    margin-top: 5px;
 }
 
 /* Banner de anúncios */
@@ -162,7 +246,7 @@ main {
     font-size: 24px;
     color: #2c3e50;
     font-weight: 600;
-    padding: 15px 25px;
+    padding: 5px 25px;
     background-color: white;
     border: 2px solid #2c3e50;
     border-bottom: none;
@@ -176,7 +260,7 @@ main {
     gap: 20px;
     overflow-x: auto;
     overflow-y: visible;
-    padding: 25px;
+    padding: 15px;
     background-color: white;
     border: 2px solid #2c3e50;
     border-radius: 0 10px 10px 10px;
