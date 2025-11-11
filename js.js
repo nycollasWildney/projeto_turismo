@@ -148,3 +148,22 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Site de Turismo carregado com sucesso!');
     console.log(`Total de ofertas disponíveis: ${offerCards.length}`);
 });
+
+// js.js (atualizado)
+// Aguarda o DOM carregar completamente
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Elementos dos botões
+    const calendarBtn = document.getElementById('calendar-btn');
+    const cartBtn = document.getElementById('cart-btn');
+    const userBtn = document.getElementById('user-btn');
+    const userDropdown = document.getElementById('user-dropdown');
+    
+    // Event listeners para os botões da barra superior
+    calendarBtn.addEventListener('click', function() {
+        console.log('Calendário clicado');
+        // Redirecionar para a página do calendário
+        window.location.href = 'calendario.html';
+    });
+    
+});
