@@ -128,11 +128,51 @@
                 </div>
             </section>
 
-            <!-- Banner de anúncios -->
-            <section class="ads-banner">
-                <div class="ad-content">
-                    <h2>🌴 Promoção Especial de Verão!</h2>
-                    <p>Aproveite até 40% de desconto em pacotes selecionados</p>
+                        <!-- Carrossel de anúncios -->
+            <section class="ads-carousel-section">
+                <div class="ads-carousel-container">
+                    <div class="ads-carousel" id="ads-carousel">
+                        <div class="ad-slide active">
+                            <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=1200&h=400&fit=crop" alt="Promoção Especial de Verão">
+                            <div class="ad-content">
+                                <h2>🌴 Promoção Especial de Verão!</h2>
+                                <p>Aproveite até 40% de desconto em pacotes selecionados</p>
+                            </div>
+                        </div>
+                        <div class="ad-slide">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&h=400&fit=crop" alt="Destinos Exóticos">
+                            <div class="ad-content">
+                                <h2>🏝️ Destinos Exóticos</h2>
+                                <p>Descubra lugares paradisíacos com preços imperdíveis</p>
+                            </div>
+                        </div>
+                        <div class="ad-slide">
+                            <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=1200&h=400&fit=crop" alt="Aventura nas Montanhas">
+                            <div class="ad-content">
+                                <h2>⛰️ Aventura nas Montanhas</h2>
+                                <p>Pacotes exclusivos para os amantes de ecoturismo</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Botões de navegação do carrossel -->
+                    <button class="carousel-nav carousel-prev" id="carousel-prev">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="carousel-nav carousel-next" id="carousel-next">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                    
+                    <!-- Indicadores do carrossel -->
+                    <div class="carousel-indicators" id="carousel-indicators">
+                        <span class="indicator active" data-slide="0"></span>
+                        <span class="indicator" data-slide="1"></span>
+                        <span class="indicator" data-slide="2"></span>
+                    </div>
                 </div>
             </section>
 
