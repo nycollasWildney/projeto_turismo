@@ -128,7 +128,7 @@
                 </div>
             </section>
 
-                        <!-- Carrossel de anúncios -->
+            <!-- Carrossel de anúncios -->
             <section class="ads-carousel-section">
                 <div class="ads-carousel-container">
                     <div class="ads-carousel" id="ads-carousel">
@@ -243,6 +243,53 @@
         </div>
     </main>
 
+    <!-- Modal do Calendário -->
+    <div class="calendar-modal-overlay" id="calendar-modal-overlay">
+        <div class="calendar-modal">
+            <div class="calendar-modal-header">
+                <h2 class="calendar-modal-title">Calendário</h2>
+                <button class="close-btn" id="close-calendar-modal">×</button>
+            </div>
+            <div class="calendar-modal-body">
+                <!-- Controles de mês/ano -->
+                <div class="calendar-controls">
+                    <button class="calendar-nav-btn" id="calendar-prev-month">←</button>
+                    <h3 class="calendar-current-month" id="calendar-current-month">Maio 2025</h3>
+                    <button class="calendar-nav-btn" id="calendar-next-month">→</button>
+                </div>
+                
+                <!-- Calendário mini -->
+                <div class="mini-calendar" id="mini-calendar">
+                    <!-- Dias da semana -->
+                    <div class="mini-calendar-header">Dom</div>
+                    <div class="mini-calendar-header">Seg</div>
+                    <div class="mini-calendar-header">Ter</div>
+                    <div class="mini-calendar-header">Qua</div>
+                    <div class="mini-calendar-header">Qui</div>
+                    <div class="mini-calendar-header">Sex</div>
+                    <div class="mini-calendar-header">Sáb</div>
+                    
+                    <!-- Dias serão inseridos via JavaScript -->
+                </div>
+                
+                <!-- Eventos do dia selecionado -->
+                <div class="mini-events-container" id="mini-events-container">
+                    <h4>Eventos de Hoje</h4>
+                    <div class="mini-events-list" id="mini-events-list">
+                        <!-- Eventos serão inseridos via JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Botão Mais Detalhes -->
+                <div class="calendar-modal-footer">
+                    <button class="details-btn" id="calendar-details-btn" onclick="window.location.href='calendario.html'">
+                        Mais Detalhes →
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -264,6 +311,10 @@
         </div>
     </footer>
 
-    <script src="js.js"></script>
+    
+
+<script src="js.js"></script>
+</body>
+</body>
 </body>
 </html>
