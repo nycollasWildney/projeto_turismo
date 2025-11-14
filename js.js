@@ -119,10 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
             switch(action) {
                 case 'packages':
                     console.log('Navegando para Meus Pacotes...');
-                    break;
-                case 'calendar':
-                    console.log('Navegando para Meu Calendário...');
-                    window.location.href = 'calendario.html';
+                    window.location.href = 'pacotesUsuario.html';
                     break;
                 case 'settings':
                     console.log('Abrindo Configurações da Conta...');
