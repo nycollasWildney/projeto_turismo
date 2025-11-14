@@ -533,3 +533,252 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+
+// ========== FUNCIONALIDADE DE DESTAQUE PARA CARDS DE FAMÍLIA ==========
+
+// Dados detalhados para os cards de família
+const familyOffersData = {
+    'Praia Paradisíaca': {
+        title: 'Praia Paradisíaca',
+        description: '5 dias e 4 noites em resort all-inclusive com atividades para toda a família. Inclui traslados, alimentação completa, bebidas não alcoólicas, atividades recreativas para crianças e adultos, spa para os pais e muito mais!',
+        price: 'R$ 3.499',
+        image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=400&fit=crop',
+        details: [
+            'Resort 5 estrelas com vista para o mar',
+            'All-inclusive premium',
+            'Atividades para crianças de 3-12 anos',
+            'Spa e massagens inclusas',
+            'Piscinas adulto e infantil'
+        ],
+        duration: '5 dias / 4 noites',
+        location: 'Maceió, AL'
+    },
+    'Aventura na Montanha': {
+        title: 'Aventura na Montanha',
+        description: 'Trilhas, cachoeiras e muito contato com a natureza em chalé aconchegante. Experiência completa em meio à natureza com guias especializados, equipamentos de segurança e alimentação típica da região.',
+        price: 'R$ 2.199',
+        image: 'https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=600&h=400&fit=crop',
+        details: [
+            'Chalé familiar com lareira',
+            'Trilhas guiadas diárias',
+            'Cachoeiras privativas',
+            'Alimentação orgânica',
+            'Observação de aves'
+        ],
+        duration: '4 dias / 3 noites',
+        location: 'Campos do Jordão, SP'
+    },
+    'Cidade Histórica': {
+        title: 'Cidade Histórica',
+        description: 'Conheça a história e cultura local com guias especializados e hospedagem charmosa. Roteiro completo pelos principais pontos históricos com transporte exclusivo e ingressos inclusos.',
+        price: 'R$ 1.899',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop',
+        details: [
+            'Hotel boutique histórico',
+            'Guias especializados',
+            'Ingressos para museus',
+            'Transporte privativo',
+            'Jantar temático inclusos'
+        ],
+        duration: '3 dias / 2 noites',
+        location: 'Ouro Preto, MG'
+    },
+    'Parque Temático': {
+        title: 'Parque Temático',
+        description: 'Diversão garantida com ingressos inclusos e hotel próximo às atrações. Pacote completo com fast pass, hospedagem temática e refeições nos restaurantes do parque.',
+        price: 'R$ 4.299',
+        image: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop',
+        details: [
+            'Ingressos 3 dias incluídos',
+            'Fast Pass ilimitado',
+            'Hospedagem temática',
+            'Refeições no parque',
+            'Transporte interno'
+        ],
+        duration: '4 dias / 3 noites',
+        location: 'São Paulo, SP'
+    },
+    'Praia Tropical': {
+        title: 'Praia Tropical',
+        description: 'Relaxe em águas cristalinas com toda infraestrutura para sua família. Resort familiar com estrutura completa, praia privativa e atividades aquáticas inclusas.',
+        price: 'R$ 2.899',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=400&fit=crop',
+        details: [
+            'Praia privativa',
+            'Suíte familiar',
+            'Atividades aquáticas',
+            'Kids club profissional',
+            'All-inclusive'
+        ],
+        duration: '5 dias / 4 noites',
+        location: 'Porto de Galinhas, PE'
+    },
+    'Fazenda Hotel': {
+        title: 'Fazenda Hotel',
+        description: 'Experiência rural completa com animais, cavalgadas e comida caseira. Imersão total na vida no campo com atividades tradicionais e gastronomia típica.',
+        price: 'R$ 1.599',
+        image: 'https://images.unsplash.com/photo-1536431311719-398b6704d4cc?w=600&h=400&fit=crop',
+        details: [
+            'Cavalgadas guiadas',
+            'Alimentação caseira',
+            'Contato com animais',
+            'Arvorismo e tirolesa',
+            'Lago para pesca'
+        ],
+        duration: '3 dias / 2 noites',
+        location: 'Interior de São Paulo'
+    }
+};
+
+// Criar overlay para destaque dos cards
+function createFamilyCardOverlay() {
+    const overlay = document.createElement('div');
+    overlay.className = 'family-card-overlay';
+    overlay.innerHTML = `
+        <div class="family-card-modal">
+            <button class="family-card-close-btn" id="family-card-close-btn">×</button>
+            <div class="family-card-modal-content">
+                <div class="family-card-image-container">
+                    <img id="family-card-modal-image" src="" alt="">
+                </div>
+                <div class="family-card-details">
+                    <h2 id="family-card-modal-title"></h2>
+                    <div class="family-card-meta">
+                        <span class="family-card-location" id="family-card-location"></span>
+                        <span class="family-card-duration" id="family-card-duration"></span>
+                    </div>
+                    <p id="family-card-modal-description"></p>
+                    <div class="family-card-features">
+                        <h4>O que está incluído:</h4>
+                        <ul id="family-card-features-list"></ul>
+                    </div>
+                    <div class="family-card-footer">
+                        <div class="family-card-price" id="family-card-modal-price"></div>
+                        <button class="add-to-cart-btn" id="add-to-cart-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            Adicionar ao Carrinho
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(overlay);
+    
+    // Event listeners para o overlay
+    const closeBtn = document.getElementById('family-card-close-btn');
+    const overlayElement = document.querySelector('.family-card-overlay');
+    
+    closeBtn.addEventListener('click', closeFamilyCardOverlay);
+    overlayElement.addEventListener('click', function(e) {
+        if (e.target === overlayElement) {
+            closeFamilyCardOverlay();
+        }
+    });
+    
+    // Event listener para o botão adicionar ao carrinho
+    document.getElementById('add-to-cart-btn').addEventListener('click', function() {
+        const title = document.getElementById('family-card-modal-title').textContent;
+        addToCart(title);
+    });
+    
+    return overlay;
+}
+
+// Mostrar overlay do card
+function showFamilyCardOverlay(cardTitle) {
+    const offerData = familyOffersData[cardTitle];
+    if (!offerData) return;
+    
+    const overlay = document.querySelector('.family-card-overlay') || createFamilyCardOverlay();
+    
+    // Preencher dados
+    document.getElementById('family-card-modal-image').src = offerData.image;
+    document.getElementById('family-card-modal-image').alt = offerData.title;
+    document.getElementById('family-card-modal-title').textContent = offerData.title;
+    document.getElementById('family-card-location').textContent = offerData.location;
+    document.getElementById('family-card-duration').textContent = offerData.duration;
+    document.getElementById('family-card-modal-description').textContent = offerData.description;
+    document.getElementById('family-card-modal-price').textContent = offerData.price;
+    
+    // Preencher lista de características
+    const featuresList = document.getElementById('family-card-features-list');
+    featuresList.innerHTML = '';
+    offerData.details.forEach(detail => {
+        const li = document.createElement('li');
+        li.textContent = detail;
+        featuresList.appendChild(li);
+    });
+    
+    // Mostrar overlay
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevenir scroll
+}
+
+// Fechar overlay do card
+function closeFamilyCardOverlay() {
+    const overlay = document.querySelector('.family-card-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = ''; // Restaurar scroll
+    }
+}
+
+// Adicionar ao carrinho
+function addToCart(itemTitle) {
+    const offerData = familyOffersData[itemTitle];
+    if (!offerData) return;
+    
+    // Simular adição ao carrinho
+    console.log(`Adicionado ao carrinho: ${itemTitle} - ${offerData.price}`);
+    
+    // Mostrar feedback visual
+    const addButton = document.getElementById('add-to-cart-btn');
+    const originalText = addButton.innerHTML;
+    
+    addButton.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        Adicionado!
+    `;
+    addButton.style.backgroundColor = '#27ae60';
+    
+    setTimeout(() => {
+        addButton.innerHTML = originalText;
+        addButton.style.backgroundColor = '';
+        closeFamilyCardOverlay();
+    }, 1500);
+}
+
+// Adicionar event listeners aos cards de família
+document.addEventListener('DOMContentLoaded', function() {
+    // Esperar um pouco para garantir que os cards estejam carregados
+    setTimeout(() => {
+        const offerCards = document.querySelectorAll('.offer-card');
+        
+        offerCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('h3').textContent;
+                showFamilyCardOverlay(title);
+            });
+            
+            // Adicionar cursor pointer para indicar que é clicável
+            card.style.cursor = 'pointer';
+        });
+        
+        console.log(`Event listeners adicionados para ${offerCards.length} cards de família`);
+    }, 500);
+});
+
+// Adicionar suporte para tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeFamilyCardOverlay();
+    }
+});
