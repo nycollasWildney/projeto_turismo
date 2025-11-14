@@ -782,3 +782,283 @@ document.addEventListener('keydown', function(e) {
         closeFamilyCardOverlay();
     }
 });
+
+// ========== FUNCIONALIDADE DO CARRINHO ==========
+
+// Dados do carrinho
+let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+// Elementos do carrinho
+let cartModalOverlay;
+let cartModal;
+
+// Inicializar funcionalidades do carrinho
+document.addEventListener('DOMContentLoaded', function() {
+    initCart();
+    updateCartCounter();
+});
+
+// Inicializar carrinho
+function initCart() {
+    createCartModal();
+    setupCartEventListeners();
+}
+
+// Criar modal do carrinho
+function createCartModal() {
+    cartModalOverlay = document.createElement('div');
+    cartModalOverlay.className = 'cart-modal-overlay';
+    cartModalOverlay.innerHTML = `
+        <div class="cart-modal">
+            <div class="cart-modal-header">
+                <h2 class="cart-modal-title">Meu Carrinho</h2>
+                <button class="close-btn" id="close-cart-modal">×</button>
+            </div>
+            <div class="cart-modal-body">
+                <div class="cart-items" id="cart-items">
+                    <!-- Itens do carrinho serão inseridos aqui -->
+                </div>
+                <div class="cart-empty" id="cart-empty">
+                    <div class="empty-cart-icon">🛒</div>
+                    <h3>Seu carrinho está vazio</h3>
+                    <p>Adicione pacotes incríveis para sua viagem!</p>
+                </div>
+                <div class="cart-summary" id="cart-summary">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span class="total-price" id="total-price">R$ 0,00</span>
+                    </div>
+                    <button class="confirm-package-btn" id="confirm-package-btn">
+                        Confirmar Pacote
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(cartModalOverlay);
+}
+
+// Configurar event listeners do carrinho
+function setupCartEventListeners() {
+    const cartBtn = document.getElementById('cart-btn');
+    const closeCartBtn = document.getElementById('close-cart-modal');
+    const confirmPackageBtn = document.getElementById('confirm-package-btn');
+
+    // Abrir modal do carrinho
+    if (cartBtn) {
+        cartBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            showCartModal();
+        });
+    }
+
+    // Fechar modal do carrinho
+    if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', closeCartModal);
+    }
+
+    // Fechar modal ao clicar fora
+    if (cartModalOverlay) {
+        cartModalOverlay.addEventListener('click', function(e) {
+            if (e.target === cartModalOverlay) {
+                closeCartModal();
+            }
+        });
+    }
+
+    // Botão confirmar pacote
+    if (confirmPackageBtn) {
+        confirmPackageBtn.addEventListener('click', function() {
+            if (cartItems.length > 0) {
+                window.location.href = 'checkout.html';
+            }
+        });
+    }
+}
+
+// Mostrar modal do carrinho
+function showCartModal() {
+    renderCartItems();
+    cartModalOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Fechar modal do carrinho
+function closeCartModal() {
+    cartModalOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Adicionar item ao carrinho (função atualizada)
+function addToCart(itemTitle) {
+    const offerData = familyOffersData[itemTitle];
+    if (!offerData) return;
+
+    // Verificar se o item já existe no carrinho
+    const existingItemIndex = cartItems.findIndex(item => item.title === itemTitle);
+    
+    if (existingItemIndex > -1) {
+        // Se já existe, incrementa a quantidade
+        cartItems[existingItemIndex].quantity += 1;
+    } else {
+        // Se não existe, adiciona novo item
+        cartItems.push({
+            title: offerData.title,
+            price: offerData.price,
+            image: offerData.image,
+            duration: offerData.duration,
+            location: offerData.location,
+            quantity: 1,
+            originalPrice: offerData.price
+        });
+    }
+
+    // Salvar no localStorage
+    saveCartToLocalStorage();
+    
+    // Atualizar interface
+    updateCartCounter();
+    
+    // Mostrar feedback visual
+    showAddToCartFeedback(itemTitle);
+}
+
+// Mostrar feedback visual ao adicionar ao carrinho
+function showAddToCartFeedback(itemTitle) {
+    const addButton = document.getElementById('add-to-cart-btn');
+    const originalText = addButton.innerHTML;
+    
+    addButton.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        Adicionado!
+    `;
+    addButton.style.backgroundColor = '#27ae60';
+    
+    setTimeout(() => {
+        addButton.innerHTML = originalText;
+        addButton.style.backgroundColor = '';
+        closeFamilyCardOverlay();
+    }, 1500);
+}
+
+// Renderizar itens do carrinho
+function renderCartItems() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartEmpty = document.getElementById('cart-empty');
+    const cartSummary = document.getElementById('cart-summary');
+    const totalPriceElement = document.getElementById('total-price');
+
+    if (cartItems.length === 0) {
+        cartItemsContainer.innerHTML = '';
+        cartEmpty.style.display = 'flex';
+        cartSummary.style.display = 'none';
+        return;
+    }
+
+    cartEmpty.style.display = 'none';
+    cartSummary.style.display = 'block';
+
+    let itemsHTML = '';
+    let total = 0;
+
+    cartItems.forEach((item, index) => {
+        // Extrair valor numérico do preço
+        const priceValue = parseFloat(item.price.replace('R$ ', '').replace('.', '').replace(',', '.'));
+        const itemTotal = priceValue * item.quantity;
+        total += itemTotal;
+
+        itemsHTML += `
+            <div class="cart-item" data-index="${index}">
+                <div class="cart-item-image">
+                    <img src="${item.image}" alt="${item.title}">
+                </div>
+                <div class="cart-item-details">
+                    <h4 class="cart-item-title">${item.title}</h4>
+                    <p class="cart-item-location">${item.location} • ${item.duration}</p>
+                    <div class="cart-item-price">${item.price}</div>
+                </div>
+                <div class="cart-item-controls">
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus-btn" onclick="updateQuantity(${index}, -1)">−</button>
+                        <span class="quantity-display">${item.quantity}</span>
+                        <button class="quantity-btn plus-btn" onclick="updateQuantity(${index}, 1)">+</button>
+                    </div>
+                    <div class="cart-item-total">R$ ${itemTotal.toFixed(2).replace('.', ',')}</div>
+                    <button class="remove-item-btn" onclick="removeFromCart(${index})">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        `;
+    });
+
+    cartItemsContainer.innerHTML = itemsHTML;
+    totalPriceElement.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+}
+
+// Atualizar quantidade do item
+function updateQuantity(index, change) {
+    const newQuantity = cartItems[index].quantity + change;
+    
+    if (newQuantity < 1) {
+        removeFromCart(index);
+        return;
+    }
+    
+    cartItems[index].quantity = newQuantity;
+    saveCartToLocalStorage();
+    updateCartCounter();
+    renderCartItems();
+}
+
+// Remover item do carrinho
+function removeFromCart(index) {
+    cartItems.splice(index, 1);
+    saveCartToLocalStorage();
+    updateCartCounter();
+    renderCartItems();
+}
+
+// Atualizar contador do carrinho
+function updateCartCounter() {
+    const cartBtn = document.getElementById('cart-btn');
+    let existingCounter = cartBtn.querySelector('.cart-counter');
+    
+    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    
+    if (totalItems > 0) {
+        if (!existingCounter) {
+            existingCounter = document.createElement('span');
+            existingCounter.className = 'cart-counter';
+            cartBtn.appendChild(existingCounter);
+        }
+        existingCounter.textContent = totalItems;
+        existingCounter.style.display = 'flex';
+    } else if (existingCounter) {
+        existingCounter.style.display = 'none';
+    }
+}
+
+// Salvar carrinho no localStorage
+function saveCartToLocalStorage() {
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+}
+
+// Carregar carrinho do localStorage
+function loadCartFromLocalStorage() {
+    const savedCart = localStorage.getItem('cartItems');
+    if (savedCart) {
+        cartItems = JSON.parse(savedCart);
+        updateCartCounter();
+    }
+}
+
+// Inicializar carregamento do carrinho
+loadCartFromLocalStorage();
