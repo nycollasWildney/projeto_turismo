@@ -535,17 +535,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Dados detalhados para os cards de família
 const familyOffersData = {
-    'Praia Paradisíaca': {
-        title: 'Praia Paradisíaca',
+    'Tirolesa Interestasual': {
+        title: 'Tirolesa Interestasual',
         description: '5 dias e 4 noites em resort all-inclusive com atividades para toda a família. Inclui traslados, alimentação completa, bebidas não alcoólicas, atividades recreativas para crianças e adultos, spa para os pais e muito mais!',
-        price: 'R$ 3.499',
-        image: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&h=400&fit=crop',
+        price: 'R$ 1.499',
+        image: 'https://territorioselvagem.com.br/wp-content/uploads/2019/08/CAPA-2.jpg?w=600&h=400&fit=crop',
         details: [
-            'Resort 5 estrelas com vista para o mar',
+            'Resort 5 estrelas com vista para as monstanhas',
             'All-inclusive premium',
             'Atividades para crianças de 3-12 anos',
-            'Spa e massagens inclusas',
-            'Piscinas adulto e infantil'
+            // 'Spa e massagens inclusas',
+            'Para adulto e infantil'
         ],
         duration: '5 dias / 4 noites',
         location: 'Maceió, AL'
