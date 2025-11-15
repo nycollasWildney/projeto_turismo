@@ -1059,3 +1059,286 @@ function loadCartFromLocalStorage() {
 
 // Inicializar carregamento do carrinho
 loadCartFromLocalStorage();
+// ========== DADOS PARA AS NOVAS SEÇÕES ==========
+
+// Dados para Aventura Radical
+const adventureOffersData = {
+    'Rapel em Cachoeira': {
+        title: 'Rapel em Cachoeira',
+        description: 'Descida emocionante em cachoeiras de até 50m com instrutores especializados. Equipamentos de segurança de última geração, fotos profissionais incluídas e certificado de aventura.',
+        price: 'R$ 299',
+        image: 'https://images.unsplash.com/photo-1530864721666-855a35c8c7f3?w=600&h=400&fit=crop',
+        details: [
+            'Equipamento de segurança completo',
+            'Instrutor especializado',
+            'Fotos profissionais',
+            'Certificado de aventura',
+            'Seguro acidentes pessoal'
+        ],
+        duration: '4 horas',
+        location: 'Brotas, SP',
+        difficulty: 'Moderada',
+        ageRequirement: '16+ anos'
+    },
+    'Mergulho com Tubarões': {
+        title: 'Mergulho com Tubarões',
+        description: 'Experiência única em aquário natural com supervisão de biólogos marinhos. Encontro próximo com tubarões-lixa em ambiente controlado e seguro.',
+        price: 'R$ 599',
+        image: 'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&h=400&fit=crop',
+        details: [
+            'Supervisão de biólogos',
+            'Equipamento de mergulho',
+            'Briefing completo',
+            'Fotos subaquáticas',
+            'Certificado de mergulho'
+        ],
+        duration: '3 horas',
+        location: 'Fernando de Noronha, PE',
+        difficulty: 'Iniciante',
+        ageRequirement: '12+ anos'
+    },
+    'Voo de Asa Delta': {
+        title: 'Voo de Asa Delta',
+        description: 'Voo duplo com instrutor experiente sobre as belas paisagens do litoral. Decolagem da rampa natural com vista panorâmica de 360 graus.',
+        price: 'R$ 450',
+        image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop',
+        details: [
+            'Voo duplo com instrutor',
+            'Equipamento certificado',
+            'Filmagem aérea',
+            'Certificado de voo',
+            'Transporte até a rampa'
+        ],
+        duration: '30 min de voo',
+        location: 'Rio de Janeiro, RJ',
+        difficulty: 'Leve',
+        ageRequirement: '14+ anos'
+    },
+    'Trilha de Quadriciclo': {
+        title: 'Trilha de Quadriciclo',
+        description: 'Aventura off-road por trilhas e dunas com equipamentos de segurança. Percurso por paisagens diversificadas com paradas para fotos.',
+        price: 'R$ 189',
+        image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&h=400&fit=crop',
+        details: [
+            'Quadriciclo 250cc',
+            'Equipamento de proteção',
+            'Guia especializado',
+            'Seguro acidentes',
+            'Água e lanche'
+        ],
+        duration: '2 horas',
+        location: 'Jericoacoara, CE',
+        difficulty: 'Fácil',
+        ageRequirement: '18+ anos (com CNH)'
+    },
+    'Salto de Paraquedas': {
+        title: 'Salto de Paraquedas',
+        description: 'Salto duplo de 10.000 pés com vista panorâmica e filmagem profissional. Experiência única com instrutor altamente qualificado.',
+        price: 'R$ 899',
+        image: 'https://images.unsplash.com/photo-1519682577862-22b62b24e493?w=600&h=400&fit=crop',
+        details: [
+            'Salto duplo tandem',
+            'Instrutor certificado',
+            'Filmagem profissional',
+            'Certificado de salto',
+            'Briefing completo'
+        ],
+        duration: '4 horas',
+        location: 'Boituva, SP',
+        difficulty: 'Moderada',
+        ageRequirement: '16+ anos'
+    },
+    'Rafting em Corredeiras': {
+        title: 'Rafting em Corredeiras',
+        description: 'Descida emocionante em corredeiras de nível III e IV com equipe de resgate. Aventura em grupo com muita adrenalina e diversão.',
+        price: 'R$ 220',
+        image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop',
+        details: [
+            'Equipamento completo',
+            'Guia especializado',
+            'Equipe de resgate',
+            'Fotos da aventura',
+            'Lanches e bebidas'
+        ],
+        duration: '3 horas',
+        location: 'Três Coroas, RS',
+        difficulty: 'Moderada/Alta',
+        ageRequirement: '14+ anos'
+    }
+};
+
+// Dados para Romântico
+const romanticOffersData = {
+    'Jantar à Beira-Mar': {
+        title: 'Jantar à Beira-Mar',
+        description: 'Jantar romântico privativo na praia com chef pessoal e som ambiente. Mesa decorada com flores, iluminação especial e cardápio personalizado.',
+        price: 'R$ 490',
+        image: 'https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=600&h=400&fit=crop',
+        details: [
+            'Chef pessoal exclusivo',
+            'Decoração romântica',
+            'Som ambiente personalizado',
+            'Cardápio degustação',
+            'Vinho espumante incluído'
+        ],
+        duration: '3 horas',
+        location: 'Praia do Francês, AL',
+        occasion: 'Jantar romântico',
+        capacity: '2 pessoas'
+    },
+    'Suíte com Hidromassagem': {
+        title: 'Suíte com Hidromassagem',
+        description: '2 noites em suíte premium com hidromassagem privativa e café na cama. Experiência completa com mimos românticos e atendimento personalizado.',
+        price: 'R$ 1.200',
+        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop',
+        details: [
+            'Suíte premium',
+            'Hidromassagem privativa',
+            'Café da manhã na cama',
+            'Decoração romântica',
+            'Champanhe de boas-vindas'
+        ],
+        duration: '2 noites',
+        location: 'Campos do Jordão, SP',
+        occasion: 'Fim de semana',
+        capacity: '2 pessoas'
+    },
+    'Passeio de Balão': {
+        title: 'Passeio de Balão',
+        description: 'Voo romântico ao amanhecer com champanhe e fotos profissionais. Experiência única sobre as paisagens mais belas da região.',
+        price: 'R$ 780',
+        image: 'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=600&h=400&fit=crop',
+        details: [
+            'Voo de 1 hora',
+            'Champanhe durante o voo',
+            'Fotógrafo profissional',
+            'Certificado de voo',
+            'Café da manhã especial'
+        ],
+        duration: '3 horas',
+        location: 'Capadócia Brasileira, GO',
+        occasion: 'Amanhecer romântico',
+        capacity: '2 pessoas'
+    },
+    'Spa para Casais': {
+        title: 'Spa para Casais',
+        description: 'Dia completo de spa com massagem dupla, banho de imersão e tratamentos especiais. Relaxamento total em ambiente exclusivo.',
+        price: 'R$ 650',
+        image: 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=600&h=400&fit=crop',
+        details: [
+            'Massagem terapêutica dupla',
+            'Banho de imersão com pétalas',
+            'Tratamento facial',
+            'Almoço light incluído',
+            'Acesso à área de relaxamento'
+        ],
+        duration: '6 horas',
+        location: 'São Paulo, SP',
+        occasion: 'Dia de spa',
+        capacity: '2 pessoas'
+    },
+    'Cruzeiro Privativo': {
+        title: 'Cruzeiro Privativo',
+        description: 'Passeio de barco exclusivo ao pôr do sol com jantar e música ao vivo. Experiência íntima com vista espetacular e serviço premium.',
+        price: 'R$ 850',
+        image: 'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=600&h=400&fit=crop',
+        details: [
+            'Barco privativo',
+            'Jantar a bordo',
+            'Músico ao vivo',
+            'Champanhe premium',
+            'Decoração especial'
+        ],
+        duration: '3 horas',
+        location: 'Angra dos Reis, RJ',
+        occasion: 'Pôr do sol',
+        capacity: '2 pessoas'
+    },
+    'Cabana na Montanha': {
+        title: 'Cabana na Montanha',
+        description: '3 dias em cabana rústica com lareira, varanda privativa e vista espetacular. Conforto e romantismo em meio à natureza.',
+        price: 'R$ 1.500',
+        image: 'https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=600&h=400&fit=crop',
+        details: [
+            'Cabana exclusiva',
+            'Lareira a lenha',
+            'Varanda com vista',
+            'Café da manhã regional',
+            'Trilha privativa'
+        ],
+        duration: '3 dias / 2 noites',
+        location: 'Serra Gaúcha, RS',
+        occasion: 'Retiro romântico',
+        capacity: '2 pessoas'
+    }
+};
+
+// ========== FUNCIONALIDADE PARA AS NOVAS SEÇÕES ==========
+
+// Adicionar dados às ofertas globais
+Object.assign(familyOffersData, adventureOffersData, romanticOffersData);
+
+// Configurar scroll para as novas seções
+document.addEventListener('DOMContentLoaded', function() {
+    // Configurar scroll para Aventura Radical
+    const adventureContainer = document.getElementById('offers-container-adventure');
+    const scrollLeftAdventure = document.getElementById('scroll-left-adventure');
+    const scrollRightAdventure = document.getElementById('scroll-right-adventure');
+
+    if (scrollRightAdventure && adventureContainer) {
+        scrollRightAdventure.addEventListener('click', function() {
+            adventureContainer.scrollBy({
+                left: 320,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    if (scrollLeftAdventure && adventureContainer) {
+        scrollLeftAdventure.addEventListener('click', function() {
+            adventureContainer.scrollBy({
+                left: -320,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Configurar scroll para Romântico
+    const romanticContainer = document.getElementById('offers-container-romantic');
+    const scrollLeftRomantic = document.getElementById('scroll-left-romantic');
+    const scrollRightRomantic = document.getElementById('scroll-right-romantic');
+
+    if (scrollRightRomantic && romanticContainer) {
+        scrollRightRomantic.addEventListener('click', function() {
+            romanticContainer.scrollBy({
+                left: 320,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    if (scrollLeftRomantic && romanticContainer) {
+        scrollLeftRomantic.addEventListener('click', function() {
+            romanticContainer.scrollBy({
+                left: -320,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Adicionar event listeners para os novos cards
+    setTimeout(() => {
+        const allOfferCards = document.querySelectorAll('.offer-card');
+        
+        allOfferCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const title = this.querySelector('h3').textContent;
+                showFamilyCardOverlay(title);
+            });
+            
+            card.style.cursor = 'pointer';
+        });
+        
+        console.log(`Event listeners adicionados para ${allOfferCards.length} cards no total`);
+    }, 500);
+});

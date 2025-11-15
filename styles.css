@@ -2032,3 +2032,59 @@ main {
         font-size: 14px;
     }
 }
+
+/* ========== ESTILOS PARA FOOTER ATUALIZADO ========== */
+
+.contact-info {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.contact-label {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    min-width: 120px;
+}
+
+.contact-link {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-link:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+/* Ajustes responsivos para o footer */
+@media (max-width: 768px) {
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .contact-label {
+        min-width: auto;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+    
+    .contact-info {
+        text-align: left;
+    }
+}

@@ -42,7 +42,15 @@
                             </svg>
                             <span>Meus pacotes</span>
                         </div>
-
+                        <div class="dropdown-item" data-action="calendar">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                            <span>Meu calendário</span>
+                        </div>
                         <div class="dropdown-item" data-action="settings">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="12" cy="12" r="3"></circle>
@@ -171,12 +179,12 @@
             <!-- Seção Família -->
             <section class="family-section">
                 <h2 class="section-title">Família</h2>
-                <button class="scroll-arrow" id="scroll-left">
+                <button class="scroll-arrow" id="scroll-left-family">
                     <svg viewBox="0 0 24 24">
                         <polyline points="15 18 9 12 15 6"></polyline>
                     </svg>
                 </button>
-                <div class="offers-container" id="offers-container">
+                <div class="offers-container" id="offers-container-family">
                     <div class="offer-card">
                         <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400&h=250&fit=crop" alt="Praia Paradisíaca">
                         <div class="offer-content">
@@ -226,7 +234,137 @@
                         </div>
                     </div>
                 </div>
-                <button class="scroll-arrow" id="scroll-right">
+                <button class="scroll-arrow" id="scroll-right-family">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </section>
+
+            <!-- Seção Aventura Radical -->
+            <section class="family-section">
+                <h2 class="section-title">Aventura Radical</h2>
+                <button class="scroll-arrow" id="scroll-left-adventure">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="offers-container" id="offers-container-adventure">
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1530864721666-855a35c8c7f3?w=400&h=250&fit=crop" alt="Rapel em Cachoeira">
+                        <div class="offer-content">
+                            <h3>Rapel em Cachoeira</h3>
+                            <p>Descida emocionante em cachoeiras de até 50m com instrutores especializados</p>
+                            <span class="price">R$ 299</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=250&fit=crop" alt="Mergulho com Tubarões">
+                        <div class="offer-content">
+                            <h3>Mergulho com Tubarões</h3>
+                            <p>Experiência única em aquário natural com supervisão de biólogos marinhos</p>
+                            <span class="price">R$ 599</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop" alt="Voos de Asa Delta">
+                        <div class="offer-content">
+                            <h3>Voo de Asa Delta</h3>
+                            <p>Voo duplo com instrutor experiente sobre as belas paisagens do litoral</p>
+                            <span class="price">R$ 450</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=250&fit=crop" alt="Trilha de Quadriciclo">
+                        <div class="offer-content">
+                            <h3>Trilha de Quadriciclo</h3>
+                            <p>Aventura off-road por trilhas e dunas com equipamentos de segurança</p>
+                            <span class="price">R$ 189</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1519682577862-22b62b24e493?w=400&h=250&fit=crop" alt="Salto de Paraquedas">
+                        <div class="offer-content">
+                            <h3>Salto de Paraquedas</h3>
+                            <p>Salto duplo de 10.000 pés com vista panorâmica e filmagem profissional</p>
+                            <span class="price">R$ 899</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=250&fit=crop" alt="Rafting em Corredeiras">
+                        <div class="offer-content">
+                            <h3>Rafting em Corredeiras</h3>
+                            <p>Descida emocionante em corredeiras de nível III e IV com equipe de resgate</p>
+                            <span class="price">R$ 220</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-arrow" id="scroll-right-adventure">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </section>
+
+            <!-- Seção Romântico -->
+            <section class="family-section">
+                <h2 class="section-title">Romântico</h2>
+                <button class="scroll-arrow" id="scroll-left-romantic">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <div class="offers-container" id="offers-container-romantic">
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=400&h=250&fit=crop" alt="Jantar à Beira-Mar">
+                        <div class="offer-content">
+                            <h3>Jantar à Beira-Mar</h3>
+                            <p>Jantar romântico privativo na praia com chef pessoal e som ambiente</p>
+                            <span class="price">R$ 490</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=250&fit=crop" alt="Suíte com Hidromassagem">
+                        <div class="offer-content">
+                            <h3>Suíte com Hidromassagem</h3>
+                            <p>2 noites em suíte premium com hidromassagem privativa e café na cama</p>
+                            <span class="price">R$ 1.200</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=400&h=250&fit=crop" alt="Passeio de Balão">
+                        <div class="offer-content">
+                            <h3>Passeio de Balão</h3>
+                            <p>Voo romântico ao amanhecer com champanhe e fotos profissionais</p>
+                            <span class="price">R$ 780</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?w=400&h=250&fit=crop" alt>Spa para Casais">
+                        <div class="offer-content">
+                            <h3>Spa para Casais</h3>
+                            <p>Dia completo de spa com massagem dupla, banho de imersão e tratamentos</p>
+                            <span class="price">R$ 650</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=400&h=250&fit=crop" alt="Cruzeiro Privativo">
+                        <div class="offer-content">
+                            <h3>Cruzeiro Privativo</h3>
+                            <p>Passeio de barco exclusivo ao pôr do sol com jantar e música ao vivo</p>
+                            <span class="price">R$ 850</span>
+                        </div>
+                    </div>
+                    <div class="offer-card">
+                        <img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?w=400&h=250&fit=crop" alt="Cabana na Montanha">
+                        <div class="offer-content">
+                            <h3>Cabana na Montanha</h3>
+                            <p>3 dias em cabana rústica com lareira, varanda privativa e vista espetacular</p>
+                            <span class="price">R$ 1.500</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-arrow" id="scroll-right-romantic">
                     <svg viewBox="0 0 24 24">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
@@ -289,6 +427,16 @@
                 <div class="footer-left">
                     <p>&copy; 2025 Turismo. Todos os direitos reservados.</p>
                     <p class="footer-small">CNPJ: 12.345.678/0001-90</p>
+                    <div class="contact-info">
+                        <p class="contact-item">
+                            <span class="contact-label">Trabalhe conosco:</span>
+                            <a href="https://wa.me/5511998887766" class="contact-link">(11) 99888-7766</a>
+                        </p>
+                        <p class="contact-item">
+                            <span class="contact-label">Email:</span>
+                            <a href="mailto:carreiras@turismo.com.br" class="contact-link">carreiras@turismo.com.br</a>
+                        </p>
+                    </div>
                 </div>
                 <div class="footer-right">
                     <p class="sponsors-title">Patrocinadores:</p>
